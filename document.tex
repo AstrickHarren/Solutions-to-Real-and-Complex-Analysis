@@ -119,7 +119,7 @@
 			\begin{align*}
 				\mu(U) \ge \mu(U \cap V_1) + \mu(U \cap V_2) \ge \mu(E_1) + \mu(E_2).
 			\end{align*}
-			Taking infimum on both sides together with the subadditvity of $ \mu $ gives the result.
+			Taking infimum on both sides together with the subadditivity of $ \mu $ gives the result.
 
 			\item Since $ E \in \mathcal{M}_F, \mu(E) < \infty $. Take $ K_1 $
 			\begin{align*}
@@ -134,6 +134,8 @@
 
 		\end{enumerate}
 	\end{exercise}
+
+	In Exercise 5 to 8, $ m $ stands for Lebesgue measure on $ \mathbb{R}^1 $.
 
 	\begin{exercise}
 		Let $ E $ be Cantor's familiar ``middle thirds'' set. Show that $ m(E) = 0 $, even through $ E $ and $ \R ^{1}  $ have the same cardinality.
@@ -151,11 +153,74 @@
 	\begin{exercise}
 		Construct a totally disconnected compact set $ K \subset \R^1 $ such that $ m(K) > 0 $. If $ v $ is lower semicontinuous and $ v \le \mathcal{X}_K $, show that actually $ v \le 0 $. Hence $ \mathcal{X}_K $ cannot be approximated from below by lower semicontinuous functions, in the sense of the Vitali-Carath\'eodory theorem.
 		\paragraph{Solution. }
-		Construct $ K $ similarly as the Cantor set in the previous exercise only we remove the middle fourths in place of thirds. Let $ R $ be the union of removed intervals. Similarly as above,
+		Construct $ K $ similarly as the Cantor set in the previous exercise only we remove the middle fourths in place of thirds. Let $ R $ be the union of removed intervals. $ K $ is compact since each removal left a closed and bounded thus compact subset of $ [0, 1] $ and $ K $ is the intersection of all these compact sets. Similarly as above,
 		\begin{align*}
 			\mu(R) = \sum_{n-1}^{\infty} \frac {2 ^{n-1} }{2 ^{2n} } = \sum \frac {1}{2 ^{n+1} } = \frac {1}{2} .
 		\end{align*}
 		Therefore $ \mu(K) = 1/2 $. Notice $ \{v > 0\} $ is open by definition. But it cannot be a subset of $ K $ except for the empty set since $ K $ is totally disconnected.
+
+	\end{exercise}
+
+	\begin{exercise}
+		If $ 0 < \epsilon < 1 $, construct an open set $ E \subset [0, 1] $ which is dense in $ [0, 1] $, such that $ m(E) = \epsilon $. (To say that $ A $ is dense in $ B $ means that the closure of $ A $ contains $ B $.)
+
+		\paragraph{Solution. }
+		The construction is similar as before. Notice if one takes out one middle $ x $-th every time with $ x > 2 $, the removed set $ R $ has measure
+		\begin{align*}
+			m(R) = \sum_{n=1}^{\infty} \frac {2 ^{n-1} }{x^n}  = \frac {1}{x - 2}
+		\end{align*}
+		Take $ x = 1/\epsilon + 2 $ and $ m(R) = \epsilon $. $ R $ is open since its complement in $ [0, 1] $ is compact (as proven before), therefore closed. To see $ R $ is dense, notice every removal divides each remaining interval into its halves. Therefore to each point $ x $ in $ [0, 1] $, there must be a point that has been removed after the $ n $-th removal and lies in $ B _{1/2^n} (x) $.
+
+	\end{exercise}
+
+	\begin{exercise}
+		Construct a Borel set $ E \subset \mathbb{R}^1 $ such that
+		\begin{align*}
+			0 < m(E \cap I) < m(I)
+		\end{align*}
+		for every nonempty segment $ I $. Is it possible to have $ m(E) < \infty $ for such a set?
+		\paragraph{Solution. }
+		Take $ E = \mathbb{Q} $. Obviously $ 0 = m(E \cap I) $. Since $ I $ is an nonempty segment, there is an open interval in it, i.e., $ m(I) > 0 $. Notice $ \mathbb{Q} $ is Borel because it is the countable union of singaltons, and singaltons are Borel.
+	\end{exercise}
+
+	\begin{exercise}
+		Construct a sequence of continuous function $ f_n $ on $ [0, 1] $ such that $ 0 \le f_n \le 1 $, such that
+		\begin{align*}
+			\lim _{n \to \infty} \int_0^1 f_n(x) dx = 0
+		\end{align*}
+		but such that the sequence $ \{f_n(x)\} $ converges for no $ x \in [0, 1] $.
+
+		\paragraph{Solution. }
+		Define
+		\begin{align*}
+			K_1 &= [0, 1], \\
+			K_2 &= [0, 1/2], K_3 = [1/2, 1], \\
+			K_4 &= [0, 1/4], K_5 = [1/4, 1/2], K_6 = [1/2, 3/4], K_7 = [3/4, 1]
+		\end{align*}
+		Obviously $ m(K_n) \to 0 $. To each $ K_n = [a, b] $, pick $ V_n = (a - 1/2n, b + 1/2n) $ and $ f_n $ that $ K_n \prec f_n \prec V_n $. Finally,
+		\begin{align*}
+			\int f_n dm \le m(V_n) = m(K_n) + 1/n \to 0
+		\end{align*}
+		But $ f_n $ does not converge for any $ x \in [0, 1] $, since $ f_n(x) = 1 $ and $ f_n(x) = 0 $ both infinitely often.
+
+		Notice the construction of $ f_n $ need not follow that of Urysohn's. Define
+		\begin{align*}
+			l((x_1, y_1), (x_2, y_2))(x) = \frac {y_1 - y_2}{x_1 - x_2} (x - x_1) + y_1.
+		\end{align*}
+		If $ V_n = (a, b) $, $ K_n = [c, d] $, and $ a < c < d < b $. Pick $ s, t $ that, $ a < s < c < d < t < b $. Take
+		\begin{align*}
+			f_n = \begin{cases}
+				0, x \le s\\
+				l((s, 0), (c, 1)), s \le x \le c\\
+				1, c \le x \le d\\
+				l((d, 1), (t, 0)), d \le x \le t\\
+				0, x \ge t
+		\end{cases}
+		\end{align*}
+
+
+
+
 
 	\end{exercise}
 
