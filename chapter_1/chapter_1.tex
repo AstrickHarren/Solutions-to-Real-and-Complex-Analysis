@@ -1,0 +1,38 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\chapter{Abstract Integration}
+
+\begin{exercise}
+  Does there exist an infinte $ \sigma $-algebra which has only countably many members?
+  \paragraph{Solution. }
+  If $ \mathcal{F} $ is a $ \sigma $-algebra and $ A $ a set, define $ \mathcal{F} \cap A := \{A \cap F: F \in \mathcal{F}\}$. Hence if $ A \in \mathcal{F} $, then $ \mathcal{F} \cap A $ is a $ \sigma $-subalgebra of $ \mathcal{F} $. Further, if $ \mathcal{F} $ is infinte, either $ A \cap \mathcal{F} $ or $ A^c \cap \mathcal{F}$  is infinte.
+
+  In other words, if $ \mathcal{F}_n $ is infinte, then there is $ A _{n+1} \in \mathcal{F}_n $ such that $ \mathcal{F} _{n+1} = \mathcal{F}_n \cap A_n^c $ is infinte. Take $ \mathcal{F}_0 = \mathcal{M} $, by induction we get a disjoint sequence of sets $ A_n \in \mathcal{M}$.
+  Since $ \mathcal{M} $ must also contain any union of sets of $ A_n $, and each union is different, this is to say $ \mathcal{M} $ contains a embedding of all subsets of $ \mathbb{N} $, therefore uncountable.
+\end{exercise}
+
+\begin{exercise}
+  Prove an analogue of Theorem 1.8 for $ n $ functions.
+  \paragraph{Solution. }
+  It suffices to prove
+  \begin{align*}
+    f = f_1 \times f_2 \times ... \times f_n
+  \end{align*}
+  is measurable is each $ f_i $ is measurable. Similarly as in the theorem, take $ R $ be any rectangles in $ \mathbb{R}^n $. Notice
+  \begin{align*}
+    f ^{-1}(R) = \bigcap f_i(I_i)
+  \end{align*}
+  is measurable, if $ R = I_1 \times I_2 \times ... \times I_n $. The rest of the proof is a repeat of Theorem 1.8.
+\end{exercise}
+
+\begin{exercise}
+  Prove that if $ f$ is a real function on a measurable space $ X $ such that $ \{x: f(x) < r\} $ is measurable for every rational $ r $, then $ f $ is measurable.
+  \paragraph{Solution. }
+  Take $ \Omega $ as all $ E \subset \mathbb{R} $ such that $ f ^{-1}(E) $ is measurable. By Theorem 1.2, $ \Omega $ is a $ \sigma $-algebra. Notice
+  \begin{align*}
+    \{f > a\} = \bigcup _{q \in \mathbb{Q} \cap (-\infty, a)} \{f > q\}
+  \end{align*}
+  for all $ a \in \mathbb{R} $. Therefore, $ \{f > a\} $ is measurable. By Theorem 1.2 again, $ f $ is measurable.
+
+\end{exercise}
+\end{document}
