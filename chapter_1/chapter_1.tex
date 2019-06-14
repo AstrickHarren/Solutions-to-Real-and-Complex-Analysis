@@ -35,4 +35,89 @@
   for all $ a \in \mathbb{R} $. Therefore, $ \{f > a\} $ is measurable. By Theorem 1.2 again, $ f $ is measurable.
 
 \end{exercise}
+
+\begin{exercise}
+  Let $ \{a_n\} $ and $ \{b_n\} $ be sequences in $ [-\infty, \infty] $, and prove the following assertions:
+  \begin{enumerate}
+    \item $$ \limsup -a_n = -\liminf a_n. $$
+    \item $$ \limsup (a_n + b_n) \le \limsup a_n + \limsup b_n $$ provided none of the sums is of the form $ \infty - \infty $.
+    \item If $ a_n \le b_n $ for all $ n $, then
+    \begin{align*}
+      \liminf a_n \le \liminf b_n
+    \end{align*}
+
+    Show by example that strict inequality can hold in b).
+
+
+  \end{enumerate}
+  \paragraph{Solution. }
+  \begin{enumerate}
+    \item First prove $ \sup -A = - \inf A $, where $ A \in \mathbb{\bar R} $. Notice $ -a \le -\inf a $ implies $ \sup -A \le -\inf A $. Similarly $ -\inf A \le \sup -A $.
+    \begin{align*}
+      \limsup (-a_n) = \inf _{n \ge 1} \sup _{k \ge n} (-a_k) = - \sup \inf a_k = -\limsup a_n
+    \end{align*}
+
+    \item Notice if $ \limsup a_n + \limsup b_n $ is defined, $ \sup _{k \ge n} a_k + \sup _{k \ge n} b_k $ is defined for sufficiently large $ n $. Notice
+    \begin{align*}
+      a_n + b_n \le \sup _{k \ge n} a_k + \sup _{k \ge n} b_k
+    \end{align*}
+    implies
+    \begin{align*}
+      \sup _{k \ge n} a_n + b_n \le \sup _{k \ge n} a_k + \sup _{k \ge n} b_k
+    \end{align*}
+    for sufficiently large $ n $. Taking the limits, whose existence indicated by the question, on both sides gives the result (any decreasing sequence has its limit the same as its infimum).
+
+    \item Clearly $ \inf _{k \ge n} a_k \le \inf _{k \ge n} b_k $ for any $ n $. This completes the proof.
+  \end{enumerate}
+
+  Define
+  \begin{align*}
+    a_n &= 1, -1, 1, -1, 1, ...\\
+    b_n &= -1, 1, -1, 1, -1, ...
+  \end{align*}
+  Obviously, $ \limsup a_n = \limsup b_n = 1 $, while $ \limsup a_n + b_n = 0 $.
+\end{exercise}
+
+\begin{exercise}
+  \begin{enumerate}
+    \item Suppose $ f: X \to [-\infty, \infty] $ and $ g: X \to [-\infty, \infty] $ are measurable. Prove that the sets
+    \begin{align*}
+      \{x: f(x) < g(x) \}, \{x: f(x) = g(x) \}
+    \end{align*}
+    are measurable.
+
+    \item Prove that the set of points at which a sequence of measurable real-valued functions converges (to a finite limit) is measurable.
+
+  \end{enumerate}
+
+  \paragraph{Solution. }
+  \begin{enumerate}
+    \item Notice
+    \begin{align*}
+      \{f < g\} = \bigcup _{r \in \mathbb Q} \{f < r\} \cap \{r < g\}
+    \end{align*}
+    therefore measurable. By symmetry, $ \{f > g\} $ is measurable as well. Now $ \{f = g\} $ is the complement of $ \{f > g\} \cup \{f < g\} $ thus must be measurable.
+
+    \item For any sequence of functions $ f_n $, the set of points the sequence converges to a finite limit is
+    \begin{align*}
+      \{\limsup f_n = \liminf f_n \} \cap \{\limsup f_n < \infty \}.
+    \end{align*}
+    Since the upper and lower limits of a sequence of functions are measurable functions, the above set is measurable.
+  \end{enumerate}
+
+\end{exercise}
+
+\begin{exercise}
+  Let $ X $ be an uncountable set, let $ \mathcal{M} $ be the collection of all sets $ E \subset X $ such that either $ E $ or $ E^c $ is at most countable, and define $ \mu(E) = 0 $ in the first case, $ mu(E) = 1 $ in the second. Prove that $ \mathcal{M} $ is a $ \sigma $-algebra in $ X $ and that $ \mu $ is a measure on $ \mathcal{M} $. Describe the corresponding measurable functions and their integrals.
+
+  \paragraph{Solution. }
+  It suffices to prove $ \mathcal{M} $ is closed under countable union and $ \mu $ is a measure. Notice for any sequence of sets $ E_n $ in $ \mathcal{M} $, if all of them are at most countable, so must be their union. Therefore $ \bigcup E_n \in \mathcal{M} $, and $ \mu(\bigcup E_n) = 0 = \sum \mu(E_n) $. If $ E_i $ have its complement at most countable, $ \left (\bigcup E_n \right )^c = \bigcap E_n^c \subset E_i^c$ is at most countable. Hence $ \bigcup E_n \in \mathcal{M} $.
+  Further, if $ E_n $ are disjoint, for any set $ E_j, j \ne i $, $ X \subset E_i^c \cup E_j^c $, showing $ E_j^c $ must be uncountable, therefore $ E_j $ must be at most countable and $ \sum \mu(E_n) = 1 = \mu \left (\bigcup E_n \right ) $.
+
+  Only describe integrals of non-negative functions, the general case follows is of no interest. Since any singalton is Borel, for any $ r \in [0, \infty] $, a measurable function $ f: X \to [0, \infty] $ would have $ f ^{-1}(r) $ either at most countable or have a at most countable complement. Take $ A $ as the set of $ r $ such that $ f ^{-1}(r)  $ has an at most countable complement. Then if $ A $ is countable, it is easy to check $ \int f = \sum _{r \in A} r  $. If $ A $ is uncountable, then $ \int f = \infty $. 21
+
+
+\end{exercise}
+
+
 \end{document}
