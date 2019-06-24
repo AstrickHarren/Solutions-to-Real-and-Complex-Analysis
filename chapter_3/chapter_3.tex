@@ -1,0 +1,130 @@
+\documentclass[../main.tex]{subfiles}
+ \begin{document}
+  \chapter{$ L^p $ Spaces}
+  \begin{exercise}
+    Prove that the supremum of any collection of convex funtions on $ (a, b) $ is convex on $ (a, b) $ (if it is finite) and that pointwise limits of sequences of convex functions are convex. What can you say about the upper and lower limits of sequences of convex functions.
+    \paragraph{Solution. }
+    If $ f_n $ is a sequence of convex functions, and $ f $ is its supremum. For any $ x, y \in (a, b) $, $ n \in \mathbb{N} $,
+    \begin{align*}
+      \lambda f(x) + (1 - \lambda) f(y) \ge \lambda f_n(x) + (1 - \lambda) f_n(y) \ge f_n(\lambda x  + (1 - \lambda) y)
+    \end{align*}
+    Taking supremum on the right side gives the result.
+
+    Now take $ f = \lim f_n $, if that exists and $ \{\infty, -\infty \} \not \subset f[(a, b)] $. Then $ f $ is convex by observing
+    \begin{align*}
+      f_n(\lambda x + (1 - \lambda) y) \to f(\lambda x + (1 - \lambda y)),\\
+      \lambda f_n(x) + (1 - \lambda) f_n(y) \to \lambda f(x) + (1 - \lambda) f(y).
+    \end{align*}
+
+    Notice $ \limsup f_n = \lim _{n = 1} \sup _{k \ge n} f_n $ is convex by the above arguments.
+
+    However, $ \liminf f_n $ may not be convex. Take $ (a, b) = (0, 1) $. Define
+    \begin{align*}
+      f_n (x) = \begin{cases}
+        x, \text{$ n $ is odd}\\
+        1 - x, \text{$ n $ is even}
+    \end{cases}.
+    \end{align*}
+    Clearly $ \liminf f(x) = \begin{cases}
+      x, 0 < x \le 1/2\\
+      1 - x, 1/2 \le x < 1
+    \end{cases}. $
+    That $ f $ is not convex is by verifying $ f(1/2) > 1/2f(1/4) + 1/2f(3/4) $
+  \end{exercise}
+
+  \setcounter{exercise}{3}
+  \begin{exercise}
+    Suppose $ f $ is a complex measurable function on $ X $, $ \mu $ is a positive measure on $ X $, and
+    \begin{align*}
+      \phi(p) = \int_X |f ^{p} | d\mu = || f ||^p_p, (0 < p < \infty).
+    \end{align*}
+    Let $ E = \{p: \phi(p) < \infty\} $. Assume $ ||f||_\infty > 0 $.
+
+    \begin{enumerate}
+      \item If $ r < p < s, r\in E $ and $ s \in E $, prove that $ p \in E $.
+      \item Prove that $ \log \phi $ is convex in the interior of $ E $ and that $ \phi $ is continuous on $ E $.
+      \item By a), $ E $ is connected. Is $ E $ necessarily open? Closed? Can $ E $ consist of a single point? Can $ E $ be any connected subset of $ (0, \infty) $?
+      \item if $ r < p < s $, prove that $ ||f||_p \le \max(||f||_r, ||f||_s) $. Show that this implies the inclusion $ L^r(\mu) \cap L^s(\mu) \subset L^p(\mu) $.
+      \item Assume that $ ||f||_r < \infty $ for some $ r < \infty $ and prove that
+      \begin{align*}
+        ||f||_p \to ||f||_\infty, \text{as $ p \to \infty.$}
+      \end{align*}
+    \end{enumerate}
+
+  \end{exercise}
+
+  \begin{exercise}
+    Assume, in addition to the hypothesis of Exercise 4, that
+    \begin{align*}
+      \mu(X) = 1.
+    \end{align*}
+    \begin{enumerate}
+      \item Prove that $ ||f||_r \le ||f||_s $, if $ 0 < r < s \le \infty $.
+      \item Under what conditions does it happen that $ 0 < r < s \le \infty $ and $ ||f||_r = ||f||_s < \infty $?
+      \item Prove that $ L^r(\mu) \subset L^s(\mu) $ if $ 0 < r < s $. Under what conditions do these two spaces contain the same functions?
+      \item Assume that $ ||f||_r < \infty $ for some $ r > 0 $, and prove that
+      \begin{align*}
+        \lim _{p \to 0} ||f||_p = \exp \left \{\int_X \log |f| d\mu \right \}
+      \end{align*}
+      if $ \exp \{-\infty\} $ is defined to be $ 0 $.
+
+    \end{enumerate}
+
+    \paragraph{Solution. }
+    \begin{enumerate}
+      \item
+      \item
+      \item
+      \item By definition of Lebesgue integral,
+      \begin{align*}
+        \int \log |f| d\mu = \int _{|f| \ge 1} \log |f| d\mu - \int _{|f| \le 1} -\log|f| d\mu
+      \end{align*}
+      since the above is essentially decomposing a integral of a function into that of its positive and negative parts. Note the integral of the positive part cannot be $ \infty $, because otherwise by the inequality $ \log t \le t - 1 $,
+      \begin{align*}
+        \infty = \int _{|f| \ge 1} \log |f| d\mu = \int _{|f| \ge 1} \frac {1}{p} (|f|^p - 1) d\mu \le \frac {1}{p} \int _{|f| \ge 1} (|f|^p - 1)
+      \end{align*}
+      showing $ ||f||_p = \infty $ for any $ p > 0 $, a contradition to the hypothesis in the question. Therefore $ \int \log |f| = -\infty $ or it is finite.
+
+      Frist consider the finite case.
+      Take any $ p_n \to 0 $, define $ f_n = \frac {|f|^{p_n} - 1}{p_n} $. Notice $ \lim f_n = \frac {d}{d|f|} |f|^p| _{|f| = 0} $ = $ \log |f| $. Further for any $ 0 < p_n < r $, if $ |f| \ge 1 $,
+      \begin{align*}
+        |f_n| = \left | \frac {|f|^{p_n}  - 1}{p_n} \right| = \int _{1} ^{|f|} s ^{p_n-1} ds \le \int _{1} ^{|f|} s ^{r - 1}  ds \le \frac {|f|^r - 1}{r} ,
+      \end{align*}
+      and if $ |f| \le 1 $,
+      \begin{align*}
+        |f_n| = \left | \frac {|f|^{p_n} - 1}{p_n} \right| = \int _{|f|} ^{1} s ^{p_n-1} ds \le \int _{1} ^{|f|} s ^{-1} ds \le -\log|f|.
+      \end{align*}
+      Therefore $ |f_n| \le \frac {|f|^r - 1}{r}\mathcal{X} _{|f| \ge 1} - \log |f|\mathcal{X} _{|f| \le 1} $. By Dominated Convergence,
+      \begin{align*}
+        \int f_n \to \int \log |f|.
+      \end{align*}
+      Observe, by the inequality $ \log t \le t -1$ again,
+      \begin{align*}
+        \frac {1}{p} \log \int |f|^p \le \int \frac {|f|^p - 1}{p} \to \int \log |f|,
+      \end{align*}
+      as $ p \to 0 $.
+      By Jensen,
+      \begin{align*}
+        \frac {1}{p} \log \int |f|^p \ge \int \log |f|,
+      \end{align*}
+      for any $ p \le r $, since $ \log $ is concave over $ \mathbb{R} $.
+      Finally the result is obtained by sandwich theorem.
+
+      Now if $ \int \log |f| d\mu = -\infty $, take $ f_n = |f|\mathcal{X}_{|f| > 1/n} + \mathcal{X}_{|f| \le 1/n} $, where $ n $ starts at $ 1 $. Clearly,
+      \begin{enumerate}
+        \item $ ||f||_p \le ||f_n||_p$.
+        \item $ \log |f_n| = \log |f| \mathcal{X}_{|f| > 1/n} $.
+        \item $ -\log |f_n| < \log n $
+      \end{enumerate}
+      Notice the positive and negative part of $ \log|f_n| $, by b), both converges increasingly to those of $ \log |f| $. By Monotone Convergence, $ \lim\limits _{n\to \infty} \exp \{\int \log |f_n|\} \to \exp \{\int \log |f|\} = 0  $. By c) $ \int \log |f_n| \ne -\infty $.
+      Obviously $ f_n \in L ^{r}(\mu) $, therefore $ \log |f_n| $ can only have finite integral by the same proof as in $ \log |f| $.     Now together with previous arguments, $ \lim\limits _{p \to 0}  ||f_n||_p \to \exp \{\int \log |f_n|\} $.
+      Therefore by a),
+      \begin{align*}
+        \limsup _{p\to 0} ||f||_p = \lim _{n\to \infty} \limsup _{p \to 0} ||f||_p \le \lim _{n\to \infty} \lim _{p \to 0} ||f_n||_p = \lim _{n\to \infty} \exp\left \{\int \log |f_n|\right \} = 0.
+      \end{align*}
+      Since $ ||f||_p \ge 0$, $ ||f||_p \to 0 $, as $ p \to 0 $.
+    \end{enumerate}
+
+
+  \end{exercise}
+ \end{document}
